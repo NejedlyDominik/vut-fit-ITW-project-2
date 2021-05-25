@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+/* VARIABLES */
+
+:root {
+    --linkPad: 20px;
+    --topNavHeight: 50px;
+    --h4MargBot: 40px;
+    --subsecPad: 20px;
+}
+
+/* GENERAL PROPERTIES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* prevent sticky navigation bar to overlap anchors */
+html {
+    scroll-padding-top: var(--topNavHeight);
+}
+
+body {
+    min-width: 320px;
+    background-color: rgb(0, 58, 57);
+}
+
+.overlay, .overlay > * {
+    position: relative;
+}
+
+/* overlay specific element (used for overlaying background images of sections) */
+.overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* do not overlap children of overlayed element */
+.overlay > * {
+    z-index: 1;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+h2, h3, h4, .menu > li > a, .records span {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+h2, h3, .menu > li > a, header h1, .records a, #submitBtn {
+    text-transform: uppercase;
+}
+
+h2, nav li a.active, header, .records a:hover, #submitBtn:hover, #socials > a:hover {
+    color: white;
+}
+
+section h2, footer h2 {
+    font-size: 30px;
+}
+
+section h2, footer h2, p:not(:last-child), #technologies, #technologiesRecords > div > a {
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: rgb(145, 202, 200);
+    font-size: 22px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: var(--h4MargBot);
+}
+
+h4, header h2, img, p, #technologiesRecords > div > a, #knowledge ul, .contactRec > a, #socials > a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+section, footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* NAVIGATION */
+
+/* always visible and in the foreground */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #0c0c0c;
+}
+
+nav, header .content, #profile, #about img, #emailForm, textarea {
+    width: 100%;
+}
+
+nav a, .content {
+    padding-left: var(--linkPad);
+    padding-right: var(--linkPad);
+}
+
+nav > a, .subsecItems a, .records a, #technologiesRecords > div > a {
+    display: inline-block;
+}
+
+nav > a {
+    line-height: var(--topNavHeight);
+    font-size: 20px;
+}
+
+nav > a, nav li a:hover, #submitBtn {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+nav > a:hover, .records a, #technologiesRecords > div > a:hover, .contactRec i, .contactRec > a:hover {
+    color: rgb(57, 175, 171);
+}
+
+
+/* smooth trasition when property changes */
+nav > a, nav li a, .records a, #technologiesRecords > div > a, #submitBtn, .contactRec > a, #socials > a {
+    transition: 0.3s;
+}
+
+#dropdownBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+nav ul {
+    list-style: none;
+}
+
+/* make navigation menu scrollable, if it is larger than the viewport excluding navigation header */
+nav > ul {
+    display: none;
+    max-height: calc(100vh - var(--topNavHeight));
+    overflow: auto;
+}
+
+nav li a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.menu > li > a {
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    line-height: 35px;
+}
+
+.menu > li > a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.menu > li > a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.submenu {
+    display: none;
+    background-color:rgb(0, 105, 104);
+}
+
+.submenu > li > a {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    line-height: 30px;
+    padding-left: calc(var(--linkPad) + 5px);
+    padding-right: calc(var(--linkPad) + 5px);
+}
+
+.submenu > li > a:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.submenu > li > a.active {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* HEADER */
+
+/* set header height to be equal to or higher than viewport height and center header content vertically */
+header {
+    display: flex;
+    align-items: center;
+    background-image: url(../img/header_bg.jpg);
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/* background covers the whole element and is attached to the viewport, so the element slides over it */
+header, #experience, #education, #skills, #projects, #interests, #contact {
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header, section, footer {
+    border-bottom: 1px solid rgb(69, 102, 102);
+}
+
+header .content, #technologiesRecords > div, #socials > a {
+    text-align: center;
+}
+
+header.overlay::after {
+    background-image: linear-gradient(rgba(0, 105, 104, 0.8), rgba(0,0,0, 0.9) 80%);
+}
+
+#profile {
+    max-width: 315px;
+    border: 15px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 45px;
+}
+
+header h1, #knowledge li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+header h1 span {
+    color: rgb(0, 255, 251);
+}
+
+header h2 {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+header h2, .contactRec > * {
+    line-height: 40px;
+}
+
+/* ABOUT */
+
+#about {
+    background-image: linear-gradient(rgb(0, 0, 0, 0.9), transparent);
+}
+
+#about img {
+    display: block;
+    border-radius: 1%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    min-width: 250px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* EXPERIENCE */
+
+#experience {
+    background-image: url(../img/exp.jpg);
+}
+
+#experience.overlay::after {
+    background-image: linear-gradient(rgba(0, 58, 57, 0.9), rgba(0,0,0, 0.9));
+}
+
+/* change margin to create place for subsection padding and keep the same vertical offset */
+.records h4, #skills h4, #projects h4 {
+    margin-bottom: calc(var(--h4MargBot) - var(--subsecPad));
+}
+
+.records > div, #socials, #socials > a {
+    margin-top: 20px;
+}
+
+.records > div {
+    padding-top: var(--subsecPad);
+    padding-bottom: var(--subsecPad);
+    border-bottom: 2px solid rgba(57, 175, 171, 0.3);
+}
+
+.records span {
+    display: block;
+    color: rgb(119, 255, 253);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.records h3, textarea {
+    margin-bottom: 5px;
+}
+
+.records a {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* EDUCATION */
+
+#education {
+    background-image: url(../img/ed.jpg);
+}
+
+#education.overlay::after, #interests.overlay::after {
+    background-image: linear-gradient(rgba(0,0,0, 0.9), rgba(0, 58, 57, 0.9));
+}
+
+/* SKILLS */
+
+#skills {
+    background-image: url(../img/skills.jpg);
+}
+
+#skills.overlay::after, #contact.overlay::after {
+    background-image: linear-gradient(rgba(0, 58, 57, 0.8), rgba(0,0,0, 0.8));
+}
+
+#skills h3 {
+    padding-top: 20px;
+    margin-bottom: 40px;
+}
+
+#technologiesRecords {
+    display: grid;
+    grid-gap: 40px;
+}
+
+#technologiesRecords > div {
+    text-align: center;
+}
+
+#technologiesRecords > div > a {
+    font-size: 70px;
+}
+
+#technologiesRecords > div > p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#knowledge p, #emailForm {
+    font-size: 17px;
+}
+
+#knowledge p {
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+#knowledge ul {
+    margin-left: 40px;
+}
+
+/* PROJECTS */
+
+#projects {
+    background-image: url(../img/project.jpg);
+}
+
+#projects.overlay::after {
+    background-image: linear-gradient(rgba(0,0,0, 0.9), rgba(0, 58, 57, 0.9), rgba(0,0,0, 0.9));
+}
+
+/* INTERESTS */
+
+#interests {
+    background-image: url(../img/interests.jpg);
+}
+
+/* CONTACT */
+
+#contact {
+    background-image: url(../img/contact.jpg);
+}
+
+#contactForm {
+    width: 380px;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+
+#contact input, textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+#emailForm, textarea {
+    display: block;
+    color: rgb(56, 56, 56);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+textarea {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+#submitBtn {
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    background-color: rgb(0, 124, 122);
+    font-weight: bold;
+}
+
+#submitBtn:hover {
+    background-color: rgb(0, 156, 154);
+}
+
+#otherContactOptions > div {
+    overflow: hidden;
+}
+
+#otherContactOptions > div > * {
+    float: left;
+}
+
+.contactRec i {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+#socials > a {
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-right: 20px;
+    border-radius: 50%;
+    line-height: 60px;
+    width: 60px;
+}
+
+#socials > a:hover {
+    background-color: rgba(0, 105, 104, 0.6);
+}
+
+/* FOOTER NOTE */
+
+#footer-note {
+    color: #808080;
+    background-color: black;
+    padding-top: 20px;
+    padding-bottom:20px;
+}
+
+/* RESPONSIVE ELEMENTS */
+
+@media (min-width: 375px) {
+    header h1 {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    #technologiesRecords {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 576px) {
+    #technologiesRecords {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    #about {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 58, 57, 0.9));
+    }
+
+    #experience.overlay::after, #education.overlay::after, #interests.overlay::after, #projects.overlay::after {
+        background-image: linear-gradient(to right,rgba(0, 58, 57, 0.9), rgba(0,0,0, 0.9));
+    }
+
+    #about, #about .content > div {
+        overflow: hidden;
+    }
+
+    #about img {
+        float: left;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 30px;
+        width: 30%;
+    }
+
+    .records > div {
+        position: relative;
+    }
+
+    .records span {
+        position: absolute;
+        top: var(--subsecPad);
+        right: 0;
+    }
+
+    #skills.overlay::after, #contact.overlay::after {
+        background-image: linear-gradient(to right, rgba(0, 58, 57, 0.8), rgba(0,0,0, 0.8));
+    }
+
+    #technologiesRecords {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 880px) {
+    #contact .content, #otherContactOptions {
+        overflow: hidden;
+    }
+
+    #contactForm {
+        float: right;
+    }
+}
+
+@media (min-width: 992px) {
+    /* no need for anchor move anchors down, when there is sticky sidebar */
+    html {
+        scroll-padding-top: 0;
+    }
+
+    nav {
+        width: 250px;
+        height: 100vh;
+        overflow: auto;
+    }
+
+    #dropdownBtn {
+        display: none;
+    }
+
+    /* display navigation menu (important property is used due to jQuery sliding methods changes) */
+    nav > ul {
+        display: block !important;
+    }
+
+    .content {
+        margin-left: 250px;
+        margin-right: auto;
+        padding-left: 50px;
+        padding-right: 50px;
+        max-width: 1200px;
+    }
+
+    #technologiesRecords {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #contactForm {
+        float: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    #technologiesRecords {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #contactForm {
+        float: right;
+    }
+}
